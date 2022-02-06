@@ -6,12 +6,24 @@
     <script>
         $(document).ready(function() {
             $("button").click(function() {
-                var x = $("form").serializeArray();
-                var field_sum = 0;
-                $.each(x, function(i, field) {
-                    field_sum += parseInt(field.value);
-                });
-                $("#output").append(field_sum);
+                var percentage = parseInt($("#percentage").val());
+                var amount = parseInt($("#amount").val());
+                var interest = parseInt($("#interest").val());
+                var duration = parseInt($("#duration").val());
+                var apreciation = parseInt($("#apreciation").val());
+                var rent = parseInt($("#rent").val());
+
+                var total_value = amount * (100/percentage) - amount;
+                var monthly_interest_rate = interest/100/12;
+                var total_payments = 12 * duration;
+                var term1 = Math.pow(1 + monthly_interest_rate, total_payments) - 1;
+                var term2 = monthly_interest_rate * Math.pow(1 + monthly_interest_rate, total_payments);
+                var monthly_payment = total_value / term1 * term2;
+                var end_value = Math.pow((100 + apreciation)/100, duration) * total_value;
+
+                $("#output").append("Monthly loan payment: " + monthly_payment.toFixed(2) + "<br>");
+                $("#output").append("Net income: " + (rent - monthly_payment).toFixed(2) + "<br>");
+                $("#output").append("Final asset value " + end_value.toFixed(2) + "<br>");
             });
         });
     </script>
@@ -25,17 +37,17 @@
 <body>
 <form>
     <label>Down Payment Percentage:</label><br>
-    <input name="percentage" type="number" value=20><br>
+    <input id="percentage" type="number" value=20><br>
     <label >Down Payment Amount:</label><br>
-    <input name="amount" type="number" value=25000><br>
+    <input id="amount" type="number" value=25000><br>
     <label >Loan Interest Rate:</label><br>
-    <input name="interest" type="number" value=6><br>
+    <input id="interest" type="number" value=6><br>
     <label >Loan Duration in Years:</label><br>
-    <input name="duration" type="number" value=20><br>
+    <input id="duration" type="number" value=20><br>
     <label >Expected Yearly Apreciation:</label><br>
-    <input name="apreciation" type="number" value=4><br>
+    <input id="apreciation" type="number" value=4><br>
     <label >Monthly rent:</label><br>
-    <input name="rent" type="number" value=250><br>
+    <input id="rent" type="number" value=250><br>
 </form><br>
 
 <button type="button">Calculate</button>
