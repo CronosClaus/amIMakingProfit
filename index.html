@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                var x = $("form").serializeArray();
+                var field_sum = 0;
+                $.each(x, function(i, field) {
+                    field_sum += parseInt(field.value);
+                });
+                $("#output").append(field_sum);
+            });
+        });
+    </script>
+    <title>amIMakingMoney</title>
+</head>
+
+<script>
+
+</script>
+
+<body>
+<form>
+    <label>Down Payment Percentage:</label><br>
+    <input name="percentage" type="number" value=20><br>
+    <label >Down Payment Amount:</label><br>
+    <input name="amount" type="number" value=25000><br>
+    <label >Loan Interest Rate:</label><br>
+    <input name="interest" type="number" value=6><br>
+    <label >Loan Duration in Years:</label><br>
+    <input name="duration" type="number" value=20><br>
+    <label >Expected Yearly Apreciation:</label><br>
+    <input name="apreciation" type="number" value=4><br>
+    <label >Monthly rent:</label><br>
+    <input name="rent" type="number" value=250><br>
+</form><br>
+
+<button type="button">Calculate</button>
+
+<div id="output"></div>
+
+</body>
+
+</html>
