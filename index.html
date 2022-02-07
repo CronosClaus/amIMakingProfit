@@ -8,12 +8,12 @@
             $("button").click(function() {
                 $("#output").empty();
 
-                var percentage = parseInt($("#percentage").val());
-                var amount = parseInt($("#amount").val());
-                var interest = parseInt($("#interest").val());
-                var duration = parseInt($("#duration").val());
-                var apreciation = parseInt($("#apreciation").val());
-                var rent = parseInt($("#rent").val());
+                var percentage = parseFloat($("#percentage").val());
+                var amount = parseFloat($("#amount").val());
+                var interest = parseFloat($("#interest").val());
+                var duration = parseFloat($("#duration").val());
+                var apreciation = parseFloat($("#apreciation").val());
+                var rent = parseFloat($("#rent").val());
 
                 var total_value = amount * (100/percentage) - amount;
                 var monthly_interest_rate = interest/100/12;
