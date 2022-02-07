@@ -6,6 +6,8 @@
     <script>
         $(document).ready(function() {
             $("button").click(function() {
+                $("#output").empty();
+
                 var percentage = parseInt($("#percentage").val());
                 var amount = parseInt($("#amount").val());
                 var interest = parseInt($("#interest").val());
@@ -22,7 +24,10 @@
                 var end_value = Math.pow((100 + apreciation)/100, duration) * total_value;
 
                 $("#output").append("Monthly loan payment: " + monthly_payment.toFixed(2) + "<br>");
-                $("#output").append("Net income: " + (rent - monthly_payment).toFixed(2) + "<br>");
+                $("#output").append("Net monthly income: " + (rent - monthly_payment).toFixed(2) + "<br>");
+                $("#output").append("Apreciation on first month: " + (Math.pow((100 + apreciation)/100, 1/12) * total_value - total_value).toFixed(2) + "<br>");
+                $("#output").append("Average apreciation per month: " + ((end_value - total_value)/total_payments).toFixed(2) + "<br>");
+                $("#output").append("Average monthly income including apreciation: " + (rent - monthly_payment + (end_value - total_value)/total_payments).toFixed(2) + "<br>");
                 $("#output").append("Final asset value " + end_value.toFixed(2) + "<br>");
             });
         });
@@ -47,7 +52,7 @@
     <label >Expected Yearly Apreciation:</label><br>
     <input id="apreciation" type="number" value=4><br>
     <label >Monthly rent:</label><br>
-    <input id="rent" type="number" value=250><br>
+    <input id="rent" type="number" value=280><br>
 </form><br>
 
 <button type="button">Calculate</button>
